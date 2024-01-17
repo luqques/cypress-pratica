@@ -1,17 +1,16 @@
-describe('Acessar o Google e pesquisar coxinha', () => {
-  it('Visitar o site Google', () => {
-    cy.visit('https://google.com')
+describe('Acessar o Google', () => {
+  const textoDigitado = 'viacredi'
+  const linkDesejado = 'https://google.com'
 
-    cy.focused()
-      .should('have.class', 'gLFyf')
-  })
+  it('Escrever o texto desejado no input', () => {
+    cy.visit(linkDesejado)
 
-  it.only('Escrever no input', () => {
-    const textoDigitado = 'coxinha'
-    cy.visit('https://google.com')
-
-    cy.get('.gLFyf')
-      .type('coxinha')
+    cy.get('#APjFqb')
+      .type(textoDigitado)
       .should('have.value', textoDigitado)
-  })
+      .type('{enter}')
+      
+    cy.get('.MUFPAc > :nth-child(2) > a')
+      .click()
+  })  
 })
